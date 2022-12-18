@@ -13,6 +13,7 @@ class Users < Api
       requires :email, type: String, desc: "Email Address", documentation: { param_type: "body" }
       requires :phone, type: String, desc: "Phone", documentation: { param_type: "body" }
       requires :password, type: String, desc: "Password", documentation: { param_type: "body" }
+      requires :role, type: Integer, desc: "Role", documentation: { param_type: "body" }
     end
 
     post "/" do

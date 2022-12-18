@@ -4,12 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
+  enum role: ["admin", "tourist", "camp_owner"]
+
   def user_data(token)
     {
       id: id,
       name: name,
       phone: phone,
       email: email,
+      role: role,
       token: token,
     }
   end       
