@@ -6,5 +6,7 @@ class Tests < Api
     get "/" do
       { status: true, message: "I am here in the test api" }
     end
+
+    
   end
 end

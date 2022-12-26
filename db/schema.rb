@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_17_090827) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_25_113931) do
+  create_table "camps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name"
+    t.string "camp_type"
+    t.string "location"
+    t.text "how_to_get_there"
+    t.text "nearby_attractions"
+    t.string "no_of_guests"
+    t.text "description"
+    t.string "contact"
+    t.string "cost"
+    t.text "images"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_camps_on_user_id"
+  end
+
   create_table "user_tokens", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "access_token"
     t.datetime "expires_at"
