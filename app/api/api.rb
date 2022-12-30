@@ -7,6 +7,7 @@ class Api < Grape::API
   mount Tests
   mount Users
   mount Camps
+  mount Bookings
 
   before do
     header["Access-Control-Allow-Origin"] = "*"

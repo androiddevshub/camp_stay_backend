@@ -17,6 +17,10 @@ class Camps < Api
       { status: true, camp_list: Camp.all, message: "Camp list" }
     end
 
+    get "/owner/:id" do
+      { status: true, camp_list: Camp.where(user_id: params["id"]), message: "Camp list" }
+    end
+
     get "/:id" do
       camp = Camp.find_by(id: params[:id])
       if camp
