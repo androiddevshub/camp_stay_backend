@@ -57,5 +57,15 @@ class Bookings < Api
       end
     end
 
+    get "/delete/:id" do
+      booking = Booking.find_by(id: params[:id])
+      if booking && booking.destroy
+        { status: true, message: "Booking deleted" }
+      else
+        error!({ status: false, message: "No booking found" }, 400)
+      end
+    end
+
+
   end
 end

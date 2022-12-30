@@ -40,6 +40,15 @@ class Camps < Api
       end
     end
 
+    get "/delete/:id" do
+      camp = Camp.find_by(id: params[:id])
+      if camp && camp.destroy
+        { status: true, message: "Camp deleted" }
+      else
+        error!({ status: false, message: "No camp found" }, 400)
+      end
+    end
+
 
   end
 end

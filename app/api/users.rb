@@ -74,5 +74,14 @@ class Users < Api
         error!({ status: false, message: "Something went wrong" }, 400)
       end
     end
+
+    get "/delete/:id" do
+      user = User.find_by(id: params[:id])
+      if user && user.destroy
+        { status: true, message: "User deleted" }
+      else
+        error!({ status: false, message: "No user found" }, 400)
+      end
+    end
   end
 end
