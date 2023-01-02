@@ -13,8 +13,8 @@ class Camps < Api
       end
     end
 
-    get "/" do
-      { status: true, camp_list: Camp.all, message: "Camp list" }
+    get "/:status" do
+      { status: true, camp_list: Camp.where(status: params["status"]).all, message: "Camp list" }
     end
 
     get "/owner/:id" do
@@ -32,9 +32,18 @@ class Camps < Api
 
 
     put "/:id" do
-      user = User.find_by(id: params[:id])
-      if user.update!(params)
-        { status: true, data: user, message: "User updated" }
+      camp = Camp.find_by(id: params[:id])
+      if camp.update!(params)
+        { status: true, data: camp, message: "Camp updated" }
+      else
+        error!({ status: false, message: "Something went wrong" }, 400)
+      end
+    end
+
+    put "/:id/status/:status" do
+      camp = Camp.find_by(id: params[:id])
+      if camp.update!(status: params["status"].to_i)
+        { status: true, data: camp, message: "Camp updated" }
       else
         error!({ status: false, message: "Something went wrong" }, 400)
       end
